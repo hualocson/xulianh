@@ -101,7 +101,7 @@ def HistEqualColor(imgin):
     G = cv2.equalizeHist(G)
     R = cv2.equalizeHist(R)
     imgout = np.array([B, G, R])
-    imgout = np.transpose(imgout, axes = [1,2,0]) 
+    imgout = np.transpose(imgout, axes = [1,2,0])
     return imgout
 
 def LocalHist(imgin):
@@ -209,7 +209,7 @@ def Sharpen(imgin):
     imgout = np.clip(imgout, 0, L-1)
     imgout = imgout.astype(np.uint8)
     return imgout
- 
+
 def Gradient(imgin):
     sobel_x = np.array([[-1,-2,-1],[0,0,0],[1,2,1]])
     sobel_y = np.array([[-1,0,1],[-2,0,2],[-1,0,1]])
