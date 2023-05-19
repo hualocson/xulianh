@@ -11,20 +11,31 @@ global imgin, imgout
 def run():
     st.title("Machine Vision")
 
-    # File operations
-    st.write("GRAYSCALE image:")
+    st.write("Upload image:")
     image_file = st.file_uploader("Choose an GRAY image file", type=["jpg", "jpeg", "png"])
+    # File operations
+    file_menu = st.sidebar.selectbox("File", ["Choose option image", "OpenColor", "OpenGray"])
 
-    if image_file is not None:
-        # Read the image and display it
-        imgin = cv2.imdecode(np.fromstring(image_file.read(), np.uint8), cv2.IMREAD_GRAYSCALE)
-        st.image(imgin, caption="GRAY Image")
+    if file_menu == "OpenColor":
+        # Perform open operation
+        if image_file is not None:
+            imgin = cv2.imdecode(np.fromstring(image_file.read(), np.uint8), cv2.IMREAD_COLOR)
+            st.image(imgin, channels="BGR", caption="Color Image")
+        # Your code here
+
+    elif file_menu == "OpenGray":
+        # Perform open color operation
+        if image_file is not None:
+            # Read the image and display it
+            imgin = cv2.imdecode(np.fromstring(image_file.read(), np.uint8), cv2.IMREAD_GRAYSCALE)
+            st.image(imgin, caption="GRAY Image")
+        # Your code here
 
     # Chapter 3 operations
     chapter3_menu = st.sidebar.selectbox("Chapter 3", ["Choose your option","Negative", "Logarit", "PiecewiseLinear", "Histogram", "HistEqual", "HistEqualColor", "LocalHist", "HistStat", "BoxFilter", "LowpassGauss", "Threshold", "MedianFilter", "Sharpen", "Gradient"])
 
     if chapter3_menu == "Negative":
-      
+
       imgout = c3.Negative(imgin)
       st.image(imgout, caption="Negative Image")
 
@@ -99,7 +110,7 @@ def run():
     elif chapter5_menu == "DenoiseMotion":
         imgout = c5.DenoiseMotion(imgin)
         st.image(imgout, caption="DenoiseMotion Image")
-    
+
     elif chapter5_menu == "DenoisestMotion":
         temp = cv2.medianBlur(imgin, 7)
         imgout = c5.DenoiseMotion(temp)
@@ -113,15 +124,15 @@ def run():
     chapter9_menu = st.sidebar.selectbox("Chapter 9", ["Choose your option","Erosion","Dilation", "OpeningClosing", "Boundary", "HoleFilling", "HoleFillingMouse", "ConnectedComponent", "CountRice"])
 
     if chapter9_menu == "Erosion":
-        imgout = c9.Erosion(imgin)
+        c9.Erosion(imgin, imgout)
         st.image(imgout, caption="Erosion Image")
 
     elif chapter9_menu == "Dilation":
-        imgout = c9.Dilation(imgin)
+        c9.Dilation(imgin, imgout)
         st.image(imgout, caption="Dilation Image")
-    
+
     elif chapter9_menu == "OpeningClosing":
-        imgout = c9.OpeningClosing(imgin)
+        c9.OpeningClosing(imgin, imgout)
         st.image(imgout, caption="OpeningClosing Image")
 
     elif chapter9_menu == "Boundary":
@@ -129,7 +140,8 @@ def run():
         st.image(imgout, caption="Boundary Image")
 
     elif chapter9_menu == "HoleFilling":
-        c9.HoleFilling(imgin)
+        imgout = c9.HoleFill(imgin)
+        st.image(imgout, caption="HoleFilling Image")
 
     elif chapter9_menu == "ConnectedComponent":
         imgout = c9.ConnectedComponent(imgin)
@@ -138,5 +150,5 @@ def run():
     elif chapter9_menu == "CountRice":
         imgout = c9.CountRice(imgin)
         st.image(imgout, caption="CountRice Image")
-    
+
     # Add the rest of the chapter 9 operations
