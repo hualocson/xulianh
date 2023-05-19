@@ -55,23 +55,50 @@ def run():
     chapter5_menu = st.sidebar.selectbox("Chapter 5", ["Choose your option","CreateMotionNoise", "DenoiseMotion", "DenoisestMotion"])
 
     if chapter5_menu == "CreateMotionNoise":
-        # Perform create motion noise operation
-        st.write("Performing CreateMotionNoise operation...")
-        # Your code here
+        imgout = c5.CreateMotionNoise(imgin)
+        st.image(imgout, caption="CreateMotionNoise Image")
 
     elif chapter5_menu == "DenoiseMotion":
-        # Perform denoise motion operation
-        st.write("Performing DenoiseMotion operation...")
-        # Your code here
+        imgout = c5.DenoiseMotion(imgin)
+        st.image(imgout, caption="DenoiseMotion Image")
+    
+    elif chapter5_menu == "DenoisestMotion":
+        temp = cv2.medianBlur(imgin, 7)
+        imgout = c5.DenoiseMotion(temp)
+        st.image(imgout, caption="DenoisestMotion Image")
+
+
 
     # Add the rest of the chapter 5 operations
 
     # Chapter 9 operations
-    chapter9_menu = st.sidebar.selectbox("Chapter 9", ["Choose your option","Erosion"])
+    chapter9_menu = st.sidebar.selectbox("Chapter 9", ["Choose your option","Erosion","Dilation", "OpeningClosing", "Boundary", "HoleFilling", "HoleFillingMouse", "ConnectedComponent", "CountRice"])
 
     if chapter9_menu == "Erosion":
-        # Perform erosion operation
-        st.write("Performing Erosion operation...")
-        # Your code here
+        imgout = c9.Erosion(imgin)
+        st.image(imgout, caption="Erosion Image")
 
+    elif chapter9_menu == "Dilation":
+        imgout = c9.Dilation(imgin)
+        st.image(imgout, caption="Dilation Image")
+    
+    elif chapter9_menu == "OpeningClosing":
+        imgout = c9.OpeningClosing(imgin)
+        st.image(imgout, caption="OpeningClosing Image")
+
+    elif chapter9_menu == "Boundary":
+        imgout = c9.Boundary(imgin)
+        st.image(imgout, caption="Boundary Image")
+
+    elif chapter9_menu == "HoleFilling":
+        c9.HoleFilling(imgin)
+
+    elif chapter9_menu == "ConnectedComponent":
+        imgout = c9.ConnectedComponent(imgin)
+        st.image(imgout, caption="ConnectedComponent Image")
+
+    elif chapter9_menu == "CountRice":
+        imgout = c9.CountRice(imgin)
+        st.image(imgout, caption="CountRice Image")
+    
     # Add the rest of the chapter 9 operations
