@@ -5,6 +5,7 @@ import NhanDangKhuonMat.predict as p2
 import ThiGiacMay.thigiac as p3
 import custom_css as ct
 import os
+import numpy as np
 
 st.set_page_config(
     page_title="Xử lý ảnh số",
