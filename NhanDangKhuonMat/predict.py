@@ -32,7 +32,7 @@ def nhandang():
 
 
     svc = joblib.load("NhanDangKhuonMat/svc.pkl")
-    mydict = ['BanKiet', 'BanNghia', 'BanNguyen', 'LocSon', 'SangSang', 'ThayDuc']
+    mydict = ['LocSon', 'MinhChien','ThayDuc']
 
     def visualize(input, faces, fps, thickness=2):
         if faces[1] is not None:
